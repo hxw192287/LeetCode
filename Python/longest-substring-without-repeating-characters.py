@@ -9,17 +9,18 @@
 class Solution:
     # @return an integer
     def lengthOfLongestSubstring(self, s):
-        longest, start, visited = 0, 0, [False for _ in xrange(256)]
-        for i, char in enumerate(s):
-            if visited[ord(char)]:
-                while char != s[start]:
-                    visited[ord(s[start])] = False
-                    start += 1
-                start += 1
+        if s == "":
+            return 0
+        MaxLength = 0
+        TempString = ""
+        for i in s:
+            if i not in TempString:
+                TempString += i
+                if len(TempString) > MaxLength:
+                    MaxLength = len(TempString)
             else:
-                visited[ord(char)] = True
-            longest = max(longest, i - start + 1)
-        return longest
+                TempString = TempString[TempString.index(i)+1:] + i
+        return MaxLength
 
 if __name__ == "__main__":
     print Solution().lengthOfLongestSubstring("abcabcbb")
