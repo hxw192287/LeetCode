@@ -21,3 +21,5 @@
 # | 4  | D    | m   | 500    |
 
 UPDATE salary SET sex = IF(sex = 'm', 'f', 'm')
+#or using XOR
+update salary set sex = CHAR(ASCII('f') ^ ASCII('m') ^ ASCII(sex))
