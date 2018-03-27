@@ -36,6 +36,7 @@ SELECT Ranks.Score, Ranks.Rank FROM Scores LEFT JOIN
        ON Scores.Score = Ranks.Score
        ORDER by Score DESC
 #or
+
 select Score,
   case 
     when @prevScore = Score then @rank
@@ -43,6 +44,15 @@ select Score,
   end as Rank
 from Scores, (select @rank := 0, @prevScore := NULL) a
 order by Score desc;
+#or
+
+SELECT
+Score,
+@rank := @rank + (@prev <> (@prev := Score)) Rank
+FROM
+Scores,
+(SELECT @rank := 0, @prev := -1) init
+ORDER BY Score desc;
 
 # Time:  O(n^3)
 # Space: O(n)
