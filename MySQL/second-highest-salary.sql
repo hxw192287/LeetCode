@@ -16,3 +16,5 @@
 SELECT (SELECT MAX(Salary) FROM Employee WHERE Salary NOT IN (SELECT MAX(Salary) FROM Employee)) SecondHighestSalary;
 # or
 SELECT (SELECT Salary FROM Employee GROUP BY Salary ORDER BY Salary DESC LIMIT 1,1) SecondHighestSalary;
+# or
+select (select distinct Salary from Employee order by Salary Desc limit 1 offset 1)as SecondHighestSalary
