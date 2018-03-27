@@ -24,3 +24,13 @@ BEGIN
                         WHERE Emp2.Salary > Emp1.Salary)
   );
 END
+# or
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+DECLARE M INT;
+Set M = N-1;
+  RETURN (
+      # Write your MySQL query statement below.
+      Select (select distinct Salary from Employee order by Salary desc limit 1 offset M) 
+  );
+END
