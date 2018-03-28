@@ -14,3 +14,13 @@ AND
 )
 ORDER BY s1.id
 ;
+#or
+select d1.* from stadium d1, stadium d2, stadium d3
+where
+    ((d1.id + 1 = d2.id and d1.id + 2 = d3.id 
+    or d1.id -1 = d2.id and d1.id + 1 = d3.id
+    or d1.id -2 = d2.id and d1.id -1 = d3.id)
+     and d1.people > 99
+     and d2.people > 99
+     and d3.people > 99)
+group by d1.id
