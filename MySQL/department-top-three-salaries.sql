@@ -39,3 +39,10 @@ FROM Employee E INNER JOIN Department D ON E.DepartmentId = D.Id
 WHERE (SELECT COUNT(DISTINCT(Salary)) FROM Employee 
        WHERE DepartmentId = E.DepartmentId AND Salary > E.Salary) < 3
 ORDER by E.DepartmentId, E.Salary DESC;
+#or without subquery
+SELECT D.Name as Department, E.Name as Employee, E.Salary 
+  FROM Department D, Employee E, Employee E2  
+  WHERE D.ID = E.DepartmentId and E.DepartmentId = E2.DepartmentId and 
+  E.Salary <= E2.Salary
+  group by D.ID,E.Name having count(distinct E2.Salary) <= 3
+  order by D.Name, E.Salary desc
