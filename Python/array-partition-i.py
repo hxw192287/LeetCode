@@ -55,3 +55,11 @@ class Solution3(object):
         """
         nums = sorted(nums)
         return sum([nums[i] for i in range(0, len(nums), 2)])
+ #or
+class Solution3_1:
+    def arrayPairSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return sum(sorted(nums)[::2])
