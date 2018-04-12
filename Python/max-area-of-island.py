@@ -66,3 +66,11 @@ class Solution(object):
 
         areas = [dfs(i, j) for i in range(m) for j in range(n) if grid[i][j]]
         return max(areas) if areas else 0
+    # or
+        maximum = 0
+        ...
+        for i in xrange (m):
+             for j in xrange(n):
+                if grid[i][j]:
+                    maximum = max(dfs(i,j),maximum)
+        return maximum
