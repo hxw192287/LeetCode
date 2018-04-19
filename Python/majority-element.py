@@ -43,7 +43,7 @@ class Solution:
         if n==1 :
             return nums[0]
         if n%2 :
-            find = set(nums[0:(n//2)+1]) & set(nums[n//2:]) ／／intersection 
+            find = set(nums[0:(n//2)+1]) & set(nums[n//2:]) #intersection 
         else:
             find = set(nums[0:n//2]) & set(nums[n//2:])
         
