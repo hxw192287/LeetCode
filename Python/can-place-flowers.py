@@ -35,3 +35,33 @@ class Solution(object):
             if n <= 0:
                 return True
         return False
+
+# Count consecutive zeros
+# even -> can put (n // 2 -1) plants
+# odd -> can put (n // 2) plants
+# Add [1, 0] and [0, 1] to the flowerbed to deal with short array length(<= 2) and
+# forces the loop to count the last round of consecutive zeros
+
+  class Solution2(object):
+    def canPlaceFlowers(self, flowerbed, n):
+        """
+        :type flowerbed: List[int]
+        :type n: int
+        :rtype: bool
+        """
+        flowerbed = [1, 0] + flowerbed + [0, 1]
+        plants = n
+        zeros = 0
+
+        for f in flowerbed:
+            if not f:
+                zeros += 1
+            else:
+                if zeros > 2:
+                    if zeros % 2 == 0:
+                        plants -= (zeros // 2 - 1)
+                    else:
+                        plants -= (zeros // 2)
+                zeros = 0
+
+        return plants <= 0
